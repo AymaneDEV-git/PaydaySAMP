@@ -6,10 +6,24 @@ CMD:aide(playerid, params[])
 
 CMD:lobbys(playerid, params[])
 {
-	if (Player[playerid][Level] > 3)
+	if (!PlayersInLobby(lobby) == 1 && Player[playerid][Level] > 3)
+	{
+		Lobbys[lobby][L_Chef] = playerid;
+		LobbyResearchTimer[lobby] = SetTimerEx("LobbyResearch", 30000, true, "i", lobby);
 		return SearchForLobby(playerid);
+	}
 	else
-		return SIM(playerid, "Vous n'avez pas le niveau requis (4) pour accéder aux lobbys.");  
+	{
+		if (PlayersInLobby(lobby) == 1)
+		{
+			SIM(playerid, "Vous êtes déjà dans le lobby.");
+		}
+		if (Player[playerid][Level] > 3)
+		{
+			SIM(playerid, "Vous n'avez pas le niveau requis (4) pour accéder aux lobbys.");  
+		}
+	}
+	return 1;
 }
 
 CMD:missions(playerid, params[])
