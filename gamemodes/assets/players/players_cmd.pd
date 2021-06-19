@@ -31,3 +31,33 @@ CMD:missions(playerid, params[])
 	ShowPlayerMissions(playerid);
 	return true;
 }
+
+CMD:voler(playerid, params[])
+{
+	new
+	userid,
+	string[72],
+	amount;
+
+	if (sscanf(params, "ud", userid, amount))
+	return SIM(playerid, "/voler <PlayerID/PlayerName>");
+
+	if (userid == INVALID_PLAYER_ID || !IsPlayerNearPlayer(playerid, userid, 5.0))
+	return SIM(playerid, "Ce joueur n'est pas connecté ou il n'est pas près de vous.");
+
+	if (userid == playerid)
+	return SIM(playerid, "Vous ne pouvez pas vous voler vous même.");
+	
+	if (amount > GetMoney(userid))
+	return SIM(playerid, "Ce joueur n'as pas asser d'argent.");
+
+	GiveMoney(userid, -amount);
+	GiveMoney(playerid, amount);
+
+	GameTextForPlayer(playerid, "~y~vous commencer un vol", 180000, 6);
+	
+	SIM(playerid, "Vous commencer à voler un joueur, un délais de trois minutes est imposé, attention à ne pas vous faire prendre!");
+	
+	SetTimerEx("RobPlayer", 180000, false, "i", playerid);
+	return 1;
+}
