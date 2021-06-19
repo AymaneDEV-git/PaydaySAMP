@@ -16,7 +16,7 @@ CMD:lobbys(playerid, params[])
 	{
 		if (PlayersInLobby(lobby) == 1)
 		{
-			SIM(playerid, "Vous êtes déjà dans le lobby.");
+			SIM(playerid, "Vous êtes déjà dans un lobby.");
 		}
 		if (Player[playerid][Level] > 3)
 		{
