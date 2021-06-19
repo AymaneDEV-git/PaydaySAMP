@@ -59,5 +59,7 @@ CMD:voler(playerid, params[])
 	SIM(playerid, "Vous commencer à voler un joueur, un délais de trois minutes est imposé, attention à ne pas vous faire prendre!");
 	
 	SetTimerEx("RobPlayer", 180000, false, "i", playerid);
+	
+	SetPlayerChatBubble(playerid, "* Ce joueur vole un joueur", 0x8000FFFF, 100.0, 180000);
 	return 1;
 }
