@@ -232,3 +232,12 @@ IsPlayerNearPlayer(playerid, targetid, Float:radius)
 
 	return (GetPlayerInterior(playerid) == GetPlayerInterior(targetid) && GetPlayerVirtualWorld(playerid) == GetPlayerVirtualWorld(targetid)) && IsPlayerInRangeOfPoint(playerid, radius, fX, fY, fZ);
 }
+
+forward RobPlayer(playerid);
+public RobPlayer(playerid)
+{
+    GivePlayerMoney(playerid, 1000);
+ 
+    SIM(playerid, "Vous venez de voler 1000$ à un joueur.");
+    return 1;
+}
