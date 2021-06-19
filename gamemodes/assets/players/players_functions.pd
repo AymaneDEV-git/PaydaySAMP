@@ -219,3 +219,16 @@ stock SendClientMessageToAllEx(color, const str[], {Float,_}:...)
 	}
 	return SendClientMessageToAll(color, str);
 } 
+
+IsPlayerNearPlayer(playerid, targetid, Float:radius)
+{
+	
+	static
+	Float:fX,
+	Float:fY,
+	Float:fZ;
+
+	GetPlayerPos(targetid, fX, fY, fZ);
+
+	return (GetPlayerInterior(playerid) == GetPlayerInterior(targetid) && GetPlayerVirtualWorld(playerid) == GetPlayerVirtualWorld(targetid)) && IsPlayerInRangeOfPoint(playerid, radius, fX, fY, fZ);
+}
