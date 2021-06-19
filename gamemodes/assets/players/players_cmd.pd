@@ -6,7 +6,7 @@ CMD:aide(playerid, params[])
 
 CMD:lobbys(playerid, params[])
 {
-	if (!PlayersInLobby(lobby) == 1 && Player[playerid][Level] > 3)
+	if (!PlayersInLobby(lobby) != 1 && Player[playerid][Level] > 3)
 	{
 		Lobbys[lobby][L_Chef] = playerid;
 		LobbyResearchTimer[lobby] = SetTimerEx("LobbyResearch", 30000, true, "i", lobby);
@@ -54,12 +54,12 @@ CMD:voler(playerid, params[])
 	GiveMoney(userid, -amount);
 	GiveMoney(playerid, amount);
 
-	GameTextForPlayer(playerid, "~y~vous commencer un vol", 180000, 6);
+	GameTextForPlayer(playerid, "~y~vous commencer un vol", 1000, 6);
 	
 	SIM(playerid, "Vous commencer à voler un joueur, un délais de trois minutes est imposé, attention à ne pas vous faire prendre!");
 	
-	SetTimerEx("RobPlayer", 180000, false, "i", playerid);
+	SetTimerEx("RobPlayer", 1500, false, "i", playerid);
 	
-	SetPlayerChatBubble(playerid, "* Ce joueur vole un joueur", 0x8000FFFF, 100.0, 180000);
+	SetPlayerChatBubble(playerid, "* Ce joueur vole un joueur", 0x8000FFFF, 100.0, 1500);
 	return 1;
 }
